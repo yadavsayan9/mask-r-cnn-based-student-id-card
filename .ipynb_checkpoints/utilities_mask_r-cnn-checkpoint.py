@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import torch 
 import random
+from torchvision import transforms
 
 def set_seed(seed):
     torch.manual_seed(seed)
@@ -32,3 +33,6 @@ def get_img_files(folder_path):
     img_files = [f for f in folder_path.glob('*') 
                  if f.suffix.lower() in ['.jpg', '.png']]
     return sorted(img_files)
+
+def tensor_to_pil(tensor_img):
+    return transforms.ToPILImage()(tensor_img)
